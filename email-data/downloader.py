@@ -34,7 +34,6 @@ def list_message_ids():
   Returns a list of all gmail message ids for the authenticated email account.
   """
 
-  import pdb; pdb.set_trace()
   # Get first page
   logger.debug("Getting first page of message ids")
   request = gmail_service.users().messages().list(userId='me')
