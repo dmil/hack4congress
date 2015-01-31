@@ -4,8 +4,11 @@ import json
 csvfile = open('PERAB_Public_Comments.csv', 'r')
 jsonfile = open('file.json', 'w')
 
-fieldnames = ("Time", "Name", "Organization", "Type of Organization", "Direct Your Comment", "Comment", "Filename")
+fieldnames = ("Time", "Name", "Type of Organization", "Comment")
 reader = csv.DictReader( csvfile, fieldnames)
 for row in reader:
-    json.dump(row, jsonfile)
+	for i in range(1, 7):
+		if i != 3 and i != 5 and i != 7:
+			final_row = final_row + "," + row[i] + "\n"
+    json.dump(final_row, jsonfile)
     jsonfile.write('\n')
