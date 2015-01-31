@@ -9,9 +9,9 @@ t = Terminal()
 db = SqliteDatabase('emails.db')
 
 class Comment(Model):
-  email_address = CharField(null=True, default=None, unique=True)
-  type_of_organization = CharField(null=True, default=None, unique=True)
-  name = CharField(null=True, default=None, unique=True)
+  email_address = CharField(null=True, default=None)
+  type_of_organization = CharField(null=True, default=None)
+  name = CharField(null=True, default=None)
   text = TextField(null=True, default=None)
 
   class Meta:

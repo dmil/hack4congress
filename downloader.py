@@ -21,6 +21,7 @@ from Utils import logger
 from Utils import html_to_text
 from models.Email import Email
 from models.SenderMetadata import SenderMetadata
+from models.Comment import Comment
 
 from peewee import *
 
@@ -180,6 +181,7 @@ def reset_database():
   logger.info("Created database 'emails.db'")
   Email.create_table()
   SenderMetadata.create_table()
+  Comment.create_table()
 
 def download_emails_to_database():
   # Download Emails
@@ -195,6 +197,20 @@ def download_emails_to_database():
       raise
     print ""
 
+def download_comments_to_database():
+  with open('data/comment.json', 'r') as jsonfile:
+    data = json.load(jsonfile)
+
+  for datum in data:
+    Comment.create(
+      email_address=None,
+      type_of_organization=datum.get('Type of Organization'),
+      name=datum.get('Name'),
+      text=datum.get('Comment')
+    )
+
+
 if __name__ == '__main__':
   reset_database()
   download_emails_to_database()
+  download_comments_to_database()
