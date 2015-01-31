@@ -169,7 +169,7 @@ def download_email(message_id):
     e.sender = s
     e.save()
 
-def download_all_to_database():
+def reset_database():
   # Delete 'emails.db' sqlite database
   if os.path.exists('emails.db'):
     os.remove('emails.db')
@@ -181,6 +181,7 @@ def download_all_to_database():
   Email.create_table()
   SenderMetadata.create_table()
 
+def download_emails_to_database():
   # Download Emails
   logger.info("Downloading emails to database.")
   for message_id in list_message_ids():
@@ -195,12 +196,5 @@ def download_all_to_database():
     print ""
 
 if __name__ == '__main__':
-  download_all_to_database()
-  # messages = ['14926044f4fed036', '14923a815ac3deb2', '1484f23d1fe924b0']
-  # message_id = '1484f23d1fe924b0'
-  # try:
-  #   download_email(message_id)
-  # except Exception, e:
-  #   print t.red("FOUND ERROR ! %s" % message_id)
-  #   print t.red( "Unexpected error: %s" % e )
-  #   raise
+  reset_database()
+  download_emails_to_database()
