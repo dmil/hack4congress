@@ -3,7 +3,7 @@ from peewee import *
 
 from Utils import logger
 from SenderMetadata import SenderMetadata
-from flask_peewee.rest import RestAPI
+from flask_peewee.rest import RestAPI, RestResource
 from flask import Flask
 app = Flask(__name__)
 
@@ -72,8 +72,18 @@ def hello_world():
     return 'Hello World!'
 
 api = RestAPI(app)
+
+class UserResource(RestResource):
+  exclude = ('sender', 'message_id', 'serialized_json', 'id', 'message_labels')
+
+  def get_request_metadata(self, paginated_query):
+        metadata = super()
+        metadata.total = Email.select().count
+        return metadata
+
+
 # register our models so they are exposed via /api/<model>/
-api.register(Email)
+api.register(Email, UserResource)
 
 # configure the urls
 api.setup()
