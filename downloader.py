@@ -21,6 +21,7 @@ from Utils import logger
 from Utils import html_to_text
 from models.Email import Email
 from models.SenderMetadata import SenderMetadata
+from models.Comment import Comment
 
 from peewee import *
 
@@ -169,7 +170,7 @@ def download_email(message_id):
     e.sender = s
     e.save()
 
-def download_all_to_database():
+def reset_database():
   # Delete 'emails.db' sqlite database
   if os.path.exists('emails.db'):
     os.remove('emails.db')
@@ -180,7 +181,9 @@ def download_all_to_database():
   logger.info("Created database 'emails.db'")
   Email.create_table()
   SenderMetadata.create_table()
+  Comment.create_table()
 
+def download_emails_to_database():
   # Download Emails
   logger.info("Downloading emails to database.")
   for message_id in list_message_ids():
@@ -194,13 +197,20 @@ def download_all_to_database():
       raise
     print ""
 
+def download_comments_to_database():
+  with open('data/comment.json', 'r') as jsonfile:
+    data = json.load(jsonfile)
+
+  for datum in data:
+    Comment.create(
+      email_address=None,
+      type_of_organization=datum.get('Type of Organization'),
+      name=datum.get('Name'),
+      text=datum.get('Comment')
+    )
+
+
 if __name__ == '__main__':
-  download_all_to_database()
-  # messages = ['14926044f4fed036', '14923a815ac3deb2', '1484f23d1fe924b0']
-  # message_id = '1484f23d1fe924b0'
-  # try:
-  #   download_email(message_id)
-  # except Exception, e:
-  #   print t.red("FOUND ERROR ! %s" % message_id)
-  #   print t.red( "Unexpected error: %s" % e )
-  #   raise
+  reset_database()
+  download_emails_to_database()
+  download_comments_to_database()
