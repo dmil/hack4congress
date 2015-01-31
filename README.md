@@ -1,7 +1,4 @@
 # hack4congress
-## Hack-a-thon Project Pitch
-
-# Congress Hack
 
 ## Summary
 
