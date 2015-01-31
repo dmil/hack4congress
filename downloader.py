@@ -19,8 +19,8 @@ from blessings import Terminal
 
 from Utils import logger
 from Utils import html_to_text
-from Email import Email
-from SenderMetadata import SenderMetadata
+from models.Email import Email
+from models.SenderMetadata import SenderMetadata
 
 from peewee import *
 
@@ -34,7 +34,6 @@ def list_message_ids():
   Returns a list of all gmail message ids for the authenticated email account.
   """
 
-  import pdb; pdb.set_trace()
   # Get first page
   logger.debug("Getting first page of message ids")
   request = gmail_service.users().messages().list(userId='me')

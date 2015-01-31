@@ -4,6 +4,19 @@
 
 Use Topic Modeling and Natural Language Processing to help representatives deal with the massive amount of email that flows into their office.
 
+## Getting Started
+
+1. Install packages
+```
+pip install --upgrade google-api-python-client
+pip install gflags
+```
+
+2. Download emails to /emails folder
+```
+python downloader.py
+```
+
 ## Problem
 Communicating with the Public
 
