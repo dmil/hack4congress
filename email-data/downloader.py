@@ -34,13 +34,18 @@ def list_message_ids():
   Returns a list of all gmail message ids for the authenticated email account.
   """
 
+  import pdb; pdb.set_trace()
   # Get first page
+  logger.debug("Getting first page of message ids")
   request = gmail_service.users().messages().list(userId='me')
   response = request.execute()
   messages_json = response['messages']
 
   # Get remaining pages
+  page_no=1
   while response.get('nextPageToken'):
+    page_no += 1
+    logger.debug("Getting page %d of message ids" % page_no)
     request = gmail_service.users().messages().list_next(previous_request=request, previous_response=response)
     response = request.execute()
     messages_json += response['messages']
@@ -166,22 +171,24 @@ def download_email(message_id):
     e.save()
 
 def download_all_to_database():
-  # # Delete 'emails.db' sqlite database
-  # if os.path.exists('emails.db'):
-  #   os.remove('emails.db')
-  #   logger.info("Deleted database 'emails.db'")
+  # Delete 'emails.db' sqlite database
+  if os.path.exists('emails.db'):
+    os.remove('emails.db')
+    logger.info("Deleted database 'emails.db'")
 
-  # # Re-create 'emails.db' sqlite database
-  # db = SqliteDatabase('emails.db')
-  # logger.info("Created database 'emails.db'")
-  # Email.create_table()
-  # SenderMetadata.create_table()
+  # Re-create 'emails.db' sqlite database
+  db = SqliteDatabase('emails.db')
+  logger.info("Created database 'emails.db'")
+  Email.create_table()
+  SenderMetadata.create_table()
 
   # Download Emails
   logger.info("Downloading emails to database.")
   for message_id in list_message_ids():
     try:
+      print "Trying to download message %s" % message_id
       download_email(message_id)
+      print t.green("Sucessfully downloaded message %s" % message_id)
     except Exception, e:
       print t.red("Error downloading message: %s" % message_id)
       # print t.red(e)
