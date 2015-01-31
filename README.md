@@ -17,5 +17,5 @@ Do you sign an online petition? Do you tweet at them? Do you, "call your congres
 
 Use topic modeling to help congressional offices keep a pulse on text that comes in from the public and create structured two-way channels of communication. We start with emails, but the concept can be applied to all textual mediums. We automatically categorize incoming emails so that the representative can (1) get a sense of what issues are important to the public and (2) reply to incoming communications with issue-specific responses, online polls, or ways for the people to take meaningful action on the issues they contacted the representative about. We can use NLP to take the swath of incoming communications and turn it into a sort of dashboard, outlining which emails are common or representative of a larger group of communications and showing snippets of text that are representative of all the emails coming in. Providing insights into who is trying to contact a congressional office via public channels such as email and about what can empower a congressional office to communicate with the public in a more meaningful two-way dialogue.
 
-Submitted by : [mailto:dhrumil.mehta@gmail.com dhrumil.mehta@gmail.com]
+Submitted by : [mailto:dhrumil.mehta@gmail.com]
 
