@@ -19,8 +19,8 @@ from blessings import Terminal
 
 from Utils import logger
 from Utils import html_to_text
-from Email import Email
-from SenderMetadata import SenderMetadata
+from models.Email import Email
+from models.SenderMetadata import SenderMetadata
 
 from peewee import *
 
