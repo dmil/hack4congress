@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import re
 import json
 import flask
-=======
 import os, re
->>>>>>> 55d573140ad86847bd5074fa0eb496a6fe9d7e72
 from peewee import *
 
 from Utils import logger
