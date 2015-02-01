@@ -1,0 +1,1 @@
+web: gunicorn models/Email:app --log-file=-
