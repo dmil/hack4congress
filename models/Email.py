@@ -5,6 +5,8 @@ from Utils import logger
 from SenderMetadata import SenderMetadata
 from flask_peewee.rest import RestAPI
 from flask import Flask
+from Form import Form
+
 app = Flask(__name__)
 
 
@@ -20,6 +22,7 @@ class Email(Model):
   serialized_json = TextField(null=True, default=None)
   sender = ForeignKeyField(SenderMetadata, null=True, default=None)
   text = TextField(null=True, default=None)
+  form = ForeignKeyField(Form, null=True, default=None)
 
   class Meta:
     database = db
