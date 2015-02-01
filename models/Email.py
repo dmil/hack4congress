@@ -23,6 +23,7 @@ class Email(Model):
 
   class Meta:
     database = db
+    order_by = ('-message_date',)
 
   @classmethod
   def create(cls, **query):
