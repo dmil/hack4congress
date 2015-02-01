@@ -38,4 +38,4 @@ final_array = np.vstack((metadata_vector_x, cosine_vectors))
 final_array = np.hstack((metadata_vector_y, final_array))
 
 # Output to CSV
-np.savetxt('president_matrix.csv', final_array, fmt='%s', delimiter=',')
+np.savetxt('similarity_matrix.csv', final_array, fmt='%s', delimiter=',')
