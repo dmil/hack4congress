@@ -55,6 +55,9 @@ class Email(Model):
       return match.group(2)
 
     match = re.match(r'[^\s<>]*@[^\s<>]*', self.message_from)
+
+    if match == None:
+      return "jeb@bush.com"
     return match.group(0)
 
   def politicalnewsbot_link(self):
