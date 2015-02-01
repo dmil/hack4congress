@@ -223,3 +223,4 @@ def download_comments_to_database():
 if __name__ == '__main__':
   reset_database()
   download_comments_to_database()
+  download_emails_to_database()
