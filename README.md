@@ -5,12 +5,10 @@ Using Topic Modeling and Natrual Language Processigng, we've developed a tool to
 
 ## Contents
 * Getting Started  
-
 * Problem  
 * Proposal  
 
 * Modeling details
-
 * Data
 * Programs  
 * References
