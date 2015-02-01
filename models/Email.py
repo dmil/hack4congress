@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import re
 import json
 import flask
+=======
+import os, re
+>>>>>>> 55d573140ad86847bd5074fa0eb496a6fe9d7e72
 from peewee import *
 
 from Utils import logger
@@ -118,5 +122,4 @@ api.register(Email, UserResource)
 api.setup()
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    app.run(host="0.0.0.0",port=os.getenv('PORT', 5000))

@@ -17,4 +17,4 @@ class Form(Model):
   @classmethod
 
   def __str__(self):
-    return "Form #%d" % self.id()
+    return "Form #%d" % self.id(self)
