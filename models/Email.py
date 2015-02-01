@@ -37,7 +37,7 @@ class Email(Model):
     inst = cls(**query)
     inst.save(force_insert=True)
     inst._prepare_instance()
-    logger.info("Created Email %s", inst.message_id)
+    logger.info("Created Email %d", inst.message_id)
     return inst
 
   def _prepare_instance(self):
