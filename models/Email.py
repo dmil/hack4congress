@@ -26,6 +26,7 @@ class Email(Model):
   sender = ForeignKeyField(SenderMetadata, null=True, default=None)
   text = TextField(null=True, default=None)
   form = ForeignKeyField(Form, null=True, default=None)
+  category = ForeignKeyField(Category, null=True, default=None)
 
   class Meta:
     database = db
@@ -36,7 +37,7 @@ class Email(Model):
     inst = cls(**query)
     inst.save(force_insert=True)
     inst._prepare_instance()
-    logger.info("Created Email %s", inst.message_id)
+    logger.info("Created Email %d", inst.message_id)
     return inst
 
   def _prepare_instance(self):
