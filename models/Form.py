@@ -9,6 +9,7 @@ t = Terminal()
 db = SqliteDatabase('emails.db')
 
 class Form(Model):
+  blank = TextField(null=True, default=None)
 
   class Meta:
     database = db
@@ -16,4 +17,4 @@ class Form(Model):
   @classmethod
 
   def __str__(self):
-    return "Form #%d" % id
+    return "Form #%d" % self.id()

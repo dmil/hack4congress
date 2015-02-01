@@ -21,6 +21,7 @@ from blessings import Terminal
 from Utils import logger
 from Utils import html_to_text
 from models.Email import Email
+from models.Form import Form
 from models.SenderMetadata import SenderMetadata
 from models.Comment import Comment
 
@@ -183,6 +184,7 @@ def reset_database():
   Email.create_table()
   SenderMetadata.create_table()
   Comment.create_table()
+  Form.create_table()
 
 def download_emails_to_database():
   # Download Emails
@@ -193,8 +195,7 @@ def download_emails_to_database():
       download_email(message_id)
       print t.green("Sucessfully downloaded message %s" % message_id)
     except Exception, e:
-      print t.red("Error downloading message: %s" % message_id)
-      # print t.red(e)
+      print t.red("Error downloading message: %s: %s" % (message_id, e))
       # raise
     print ""
 
@@ -209,7 +210,6 @@ def download_comments_to_database():
       name=datum.get('Name'),
       text=datum.get('Comment').replace('_x000D_', ' ')
     )
-
 
 if __name__ == '__main__':
   reset_database()
