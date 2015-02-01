@@ -1,1 +1,1 @@
-web: gunicorn models/Email:app --log-file=-
+web: python models/Email.py --log-file=-
