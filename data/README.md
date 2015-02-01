@@ -1,1 +1,1 @@
-1000-comments.csv includes <form letters>
+1000-comments.csv includes public comments from whitehouse.gov

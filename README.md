@@ -7,7 +7,6 @@ Using Topic Modeling and Natrual Language Processigng, we've developed a tool to
 * Getting Started  
 * Problem  
 * Proposal  
-
 * Modeling details
 * Data
 * Programs  
@@ -17,8 +16,7 @@ Using Topic Modeling and Natrual Language Processigng, we've developed a tool to
 
 1. Install packages
 ```
-pip install --upgrade google-api-python-client
-pip install gflags
+pip install -r requirements.txt
 ```
 
 2. Download emails to /emails folder
@@ -52,13 +50,14 @@ Each email is receives three tags:
 2. what is the email about? (topic analysis)  
 3. what is the email category?
 
-* ty			Thank you
-* meeting		Meeting Request
-* action		Case work /Action request
-* opinion		(Policy) opinion
-* question		question/info request
-
-* inter office  inter office chatter about operations
+|abbrev|category
+|---|---
+|ty		| Thank you
+|meeting |Meeting Request
+|action |Case work /Action request
+|opinion |(Policy) opinion
+|question |question/info request
+|inter office | inter office chatter about operations
 
 
 
