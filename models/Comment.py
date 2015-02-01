@@ -5,6 +5,8 @@ from peewee import *
 from Utils import logger
 from Utils import get_answer
 
+from Form import Form
+
 t = Terminal()
 db = SqliteDatabase('emails.db')
 
@@ -13,6 +15,7 @@ class Comment(Model):
   type_of_organization = CharField(null=True, default=None)
   name = CharField(null=True, default=None)
   text = TextField(null=True, default=None)
+  form = ForeignKeyField(Form, null=True, default=None)
 
   class Meta:
     database = db
