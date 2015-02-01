@@ -24,6 +24,7 @@ from models.Email import Email
 from models.Form import Form
 from models.SenderMetadata import SenderMetadata
 from models.Comment import Comment
+from models.Category import Category
 
 from peewee import *
 
@@ -185,6 +186,14 @@ def reset_database():
   SenderMetadata.create_table()
   Comment.create_table()
   Form.create_table()
+  Category.create_table()
+
+  Category(name= "Meetings").save()
+  Category(name= "Opinions").save()
+  Category(name= "Question").save()
+  Category(name= "Action").save()
+  Category(name= "Thank You").save()
+
 
 def download_emails_to_database():
   # Download Emails
@@ -214,4 +223,3 @@ def download_comments_to_database():
 if __name__ == '__main__':
   reset_database()
   download_comments_to_database()
-  download_emails_to_database()
