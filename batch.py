@@ -53,7 +53,7 @@ g = nx.Graph(sparse.csr_matrix(boolean_matrix))
 
 # Populate Forms
 for batch in nx.connected_components(g):
-  f = Form()
+  f = Form(blank="")
   f.save()
   # form.save(force_insert=True)
   for item_id in batch:
@@ -66,8 +66,8 @@ for batch in nx.connected_components(g):
     try:
       comment = Comment.get(Comment.id==item_id)
       comment.form = f
-      comment.execute()
+      comment.save()
       # import pdb; pdb.set_trace()
-      # comment.save(force_insert=Tqrue)
+      # comment.save(force_insert=True)
     except:
       print t.red("Could not get comment with id #%d" % item_id)
