@@ -3,6 +3,10 @@ from peewee import *
 
 from Utils import logger
 from SenderMetadata import SenderMetadata
+from flask_peewee.rest import RestAPI
+from flask import Flask
+app = Flask(__name__)
+
 
 db = SqliteDatabase('emails.db')
 
@@ -62,3 +66,17 @@ class Email(Model):
   @classmethod
   def unique_email_addresses(cls):
     return {x.email() for x in cls.select()}
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+api = RestAPI(app)
+# register our models so they are exposed via /api/<model>/
+api.register(Email)
+
+# configure the urls
+api.setup()
+
+if __name__ == '__main__':
+    app.run()
