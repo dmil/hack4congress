@@ -9,6 +9,7 @@ import numpy as np
 import csv
 from itertools import *
 from operator import itemgetter
+from blessings import Terminal
 
 # Scientific computing imports
 import matplotlib.pyplot as plt
@@ -19,6 +20,10 @@ from scipy import sparse
 
 # Import other files in package
 from models.Comment import Comment
+from models.Form import Form
+from models.Email import Email
+
+t = Terminal()
 
 # Prepare Data into mutli-dimensional vectors
 comments = Comment.select()
@@ -46,5 +51,23 @@ np.savetxt('similarity_matrix.csv', final_array, fmt='%s', delimiter=',')
 boolean_matrix = [map(lambda x: 1 if x > .9 else 0, vector) for vector in cosine_vectors]
 g = nx.Graph(sparse.csr_matrix(boolean_matrix))
 
-for item in nx.connected_components(g):
-  print item
+# Populate Forms
+for batch in nx.connected_components(g):
+  f = Form()
+  f.save()
+  # form.save(force_insert=True)
+  for item_id in batch:
+
+    if len(batch) <= 1: 
+      continue
+
+    item_id += 1
+
+    try:
+      comment = Comment.get(Comment.id==item_id)
+      comment.form = f
+      comment.execute()
+      # import pdb; pdb.set_trace()
+      # comment.save(force_insert=Tqrue)
+    except:
+      print t.red("Could not get comment with id #%d" % item_id)
