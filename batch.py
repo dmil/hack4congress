@@ -26,9 +26,9 @@ from models.Email import Email
 t = Terminal()
 
 # Prepare Data into mutli-dimensional vectors
-comments = Comment.select()
-texts = np.array([comment.text for comment in comments])
-metadata = [comment.id for comment in comments]
+emails = Email.select()
+texts = np.array([email.text for email in emails])
+metadata = [email.id for email in emails]
 
 # Convert a collection of text documents to a matrix of token counts
 vectorizer = CountVectorizer(lowercase=True)
@@ -61,12 +61,14 @@ for batch in nx.connected_components(g):
     if len(batch) <= 1: 
       continue
 
+    import pdb; pdb.set_trace()
+    
     item_id += 1
 
     try:
-      comment = Comment.get(Comment.id==item_id)
-      comment.form = f
-      comment.save()
+      email = Email.get(Email.id==item_id)
+      email.form = f
+      email.save()
       # import pdb; pdb.set_trace()
       # comment.save(force_insert=True)
     except:
