@@ -206,11 +206,11 @@ def download_comments_to_database():
       email_address=None,
       type_of_organization=datum.get('Type of Organization'),
       name=datum.get('Name'),
-      text=datum.get('Comment')
+      text=datum.get('Comment').replace('_x000D_', ' ')
     )
 
 
 if __name__ == '__main__':
   reset_database()
-  download_emails_to_database()
+  # download_emails_to_database()
   download_comments_to_database()
