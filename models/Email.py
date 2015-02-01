@@ -1,4 +1,4 @@
-import re
+import os, re
 from peewee import *
 
 from Utils import logger
@@ -98,4 +98,4 @@ api.register(Email, UserResource)
 api.setup()
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000)
+    app.run(host="0.0.0.0",port=os.getenv('PORT', 5000))
