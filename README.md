@@ -44,11 +44,11 @@ Submitted by : dhrumil.mehta@gmail.com
 
 ### Email Classification Categories
 
-Each email is receives three tags:
+Each email receives three tags:
 
-1. form-style or personal email?  
-2. what is the email about? (topic analysis)  
-3. what is the email category?
+1. is the email a form or personal?
+2. what is the email about? (topic analysis)
+3. what is the email category? categories:
 
 |abbrev|category
 |---|---
@@ -57,7 +57,6 @@ Each email is receives three tags:
 |action |Case work /Action request
 |opinion |(Policy) opinion
 |question |question/info request
-|inter office | inter office chatter about operations
 
 
 
