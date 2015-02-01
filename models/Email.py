@@ -5,6 +5,8 @@ from Utils import logger
 from SenderMetadata import SenderMetadata
 from flask_peewee.rest import RestAPI, RestResource
 from flask import Flask
+from Form import Form
+
 app = Flask(__name__)
 
 
@@ -20,9 +22,11 @@ class Email(Model):
   serialized_json = TextField(null=True, default=None)
   sender = ForeignKeyField(SenderMetadata, null=True, default=None)
   text = TextField(null=True, default=None)
+  form = ForeignKeyField(Form, null=True, default=None)
 
   class Meta:
     database = db
+    order_by = ('-message_date',)
 
   @classmethod
   def create(cls, **query):
@@ -55,6 +59,9 @@ class Email(Model):
       return match.group(2)
 
     match = re.match(r'[^\s<>]*@[^\s<>]*', self.message_from)
+
+    if match == None:
+      return "jeb@bush.com"
     return match.group(0)
 
   def politicalnewsbot_link(self):

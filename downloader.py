@@ -11,6 +11,7 @@ import shutil
 import re
 import email
 import sys
+import chardet
 
 from pprint import pprint
 from collections import Counter
@@ -66,7 +67,7 @@ def parse_singlepart_text_message(msg):
 
   charset = msg.get_content_charset()
   if charset is None:
-    raise Exception("Unknown charset")
+    charset = chardet.detect(msg.get_payload())['encoding']
 
   if msg.get_content_type() == 'text/plain':
     text = unicode(msg.get_payload(decode=True), str(charset), "ignore")
@@ -194,7 +195,7 @@ def download_emails_to_database():
     except Exception, e:
       print t.red("Error downloading message: %s" % message_id)
       # print t.red(e)
-      raise
+      # raise
     print ""
 
 def download_comments_to_database():
@@ -212,5 +213,5 @@ def download_comments_to_database():
 
 if __name__ == '__main__':
   reset_database()
-  # download_emails_to_database()
-  download_comments_to_database()
+  download_emails_to_database()
+  # download_comments_to_database()
