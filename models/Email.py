@@ -77,7 +77,9 @@ class UserResource(RestResource):
   exclude = ('sender', 'message_id', 'serialized_json', 'id', 'message_labels')
 
   def get_request_metadata(self, paginated_query):
-        metadata = super()
+        metadata = super(Meta)
+        import pdb
+        pdb.set_trace
         metadata.total = Email.select().count
         return metadata
 
