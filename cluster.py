@@ -65,7 +65,7 @@ scatter = ax.scatter(x,
 
 ax.grid(color='white', linestyle='solid')
 
-ax.set_title("State of the Union Speeches", size=21)
+ax.set_title("Comments Clustering", size=21)
 
 # tooltip = mpld3.plugins.PointLabelTooltip(scatter, labels=labels)
 # mpld3.plugins.connect(fig, tooltip)

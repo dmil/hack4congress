@@ -61,10 +61,9 @@ for batch in nx.connected_components(g):
     if len(batch) <= 1: 
       continue
 
-    import pdb; pdb.set_trace()
-    
     item_id += 1
 
+    # POPULATE FORM FROM BATCH
     try:
       email = Email.get(Email.id==item_id)
       email.form = f
@@ -73,3 +72,7 @@ for batch in nx.connected_components(g):
       # comment.save(force_insert=True)
     except:
       print t.red("Could not get comment with id #%d" % item_id)
+
+    # POPULATE CATEGORY FROM LABELS
+    import pdb; pdb.set_trace()
+

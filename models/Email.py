@@ -1,15 +1,15 @@
 import re
 import json
-import flask
 import os, re
+import flask
 from peewee import *
 
 from Utils import logger
 from SenderMetadata import SenderMetadata
 from flask_peewee.rest import RestAPI, RestResource
-from flask import Flask
+from flask import Flask, request, url_for
 from Form import Form
-from Category import Category
+#from Category import Category
 
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ class Email(Model):
     inst = cls(**query)
     inst.save(force_insert=True)
     inst._prepare_instance()
-    logger.info("Created Email %d", inst.message_id)
+    logger.info("Created Email %s", inst.message_id)
     return inst
 
   def _prepare_instance(self):
@@ -80,39 +80,34 @@ class Email(Model):
   def unique_email_addresses(cls):
     return {x.email() for x in cls.select()}
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
 api = RestAPI(app)
 
 class UserResource(RestResource):
   exclude = ('sender', 'message_id', 'serialized_json', 'message_labels')
-  # def get_request_metadata(self, paginated_query):
-  #   #metadata = super()
-  #   #metadata.total = Email.select().count
-  #   #return metadata
-  #   current_page = paginated_query.get_page()
-  #   next = previous = ''
+  def get_request_metadata(self, paginated_query):
+    var = paginated_query.page_var
+    request_arguments = request.args.copy()
+    current_page = paginated_query.get_page()
+    next = previous = ''
 
-  #   if current_page > 1:
-  #      request_arguments[var] = current_page - 1
-  #      previous = url_for(self.get_url_name('api_list'), **request_arguments)
-  #   if current_page < paginated_query.get_pages():
-  #      request_arguments[var] = current_page + 1
-  #      next = url_for(self.get_url_name('api_list'), **request_arguments)
+    if current_page > 1:
+      request_arguments[var] = current_page - 1
+      previous = url_for(self.get_url_name('api_list'), **request_arguments)
+    if current_page < paginated_query.get_pages():
+      request_arguments[var] = current_page + 1
+      next = url_for(self.get_url_name('api_list'), **request_arguments)
 
-  #   meta_v = {
-  #      'model': self.get_api_name(),
-  #      'page': current_page,
-  #      'previous': previous,
-  #      'next': next,
-  #      'total': Email.select().count()
-  #   }
+    meta_v = {
+    'model': self.get_api_name(),
+    'page': current_page,
+    'previous': previous,
+    'next': next,
+    'total': Email.select().count()
+    }
 
-  #   flask.jsonify(meta_v)
+    flask.jsonify(meta_v)
+    return meta_v
 
-  #   return meta_v
 
 
 # register our models so they are exposed via /api/<model>/
