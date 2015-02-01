@@ -86,7 +86,7 @@ def hello_world():
 
 api = RestAPI(app)
 
-class UserpResource(RestResource):
+class UserResource(RestResource):
   exclude = ('sender', 'message_id', 'serialized_json', 'message_labels')
 #   def get_request_metadata(self, paginated_query):
 #     #metadata = super()
