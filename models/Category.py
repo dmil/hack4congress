@@ -19,4 +19,4 @@ class Category(Model):
   @classmethod
 
   def __str__(self):
-    return self.email_address + " (%s)" % self.comment
+    return name

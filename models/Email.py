@@ -9,6 +9,8 @@ from SenderMetadata import SenderMetadata
 from flask_peewee.rest import RestAPI, RestResource
 from flask import Flask
 from Form import Form
+from Category import Category
+
 
 app = Flask(__name__)
 
