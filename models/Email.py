@@ -26,6 +26,7 @@ class Email(Model):
   sender = ForeignKeyField(SenderMetadata, null=True, default=None)
   text = TextField(null=True, default=None)
   form = ForeignKeyField(Form, null=True, default=None)
+  category = ForeignKeyField(Category, null=True, default=None)
 
   class Meta:
     database = db
