@@ -1,14 +1,16 @@
 import csv
 import json
 
-csvfile = open('PERAB_Public_Comments.csv', 'r')
-jsonfile = open('file.json', 'w')
+csvfile = open('1000-comments.csv', 'r')
 
 fieldnames = ("Time", "Name", "Type of Organization", "Comment")
-reader = csv.DictReader( csvfile, fieldnames)
+reader = csv.DictReader(csvfile)
+
+rows = []
 for row in reader:
-  for i in range(1, 7):
-    if i != 3 and i != 5 and i != 7:
-      final_row = final_row + "," + row[i] + "\n"
-    json.dump(final_row, jsonfile)
-    jsonfile.write('\n')
+  row = dict((key,value) for key, value in row.iteritems() if key == "Name" or key == "Comment")
+  rows.append(row)
+
+
+with open('file.json', 'w') as jsonfile:
+  json.dump(rows, jsonfile, indent=2)
