@@ -1,4 +1,10 @@
-credentials
+credentials/
+*.com.json
+keys.json
+*.storage
+emails/*.json
+*.pyc
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
