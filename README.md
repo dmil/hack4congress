@@ -3,6 +3,8 @@
 ## Summary
 Using Topic Modeling and Natrual Language Processigng, we've developed a tool to automatically classify congresssional email, so that underpaid interns don't have to do it manually.
 
+[![IMAGE ALT TEXT](https://www.evernote.com/shard/s150/sh/3ea6e33b-4fdd-49a4-8aa7-e315b7f4efd1/45421fed843bd84c/res/6d06fe42-4b1c-4115-9910-0e17c4137e0e/skitch.png?resizeSmall&width=832)](https://www.youtube.com/watch?v=Hwx8PVUF2SA "Hack4Congress Project")
+
 ## Contents
 * Getting Started  
 * Problem  
